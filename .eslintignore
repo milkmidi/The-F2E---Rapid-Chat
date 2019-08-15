@@ -1,0 +1,10 @@
+dist/*
+node_modules/*
+_doc/*
+src/vendor/*
+src/lib/*
+src/html/*
+flow-typed/*
+**/vendor/*.js
+!.eslintrc.js
+internal/script/SSR/createjs.module.js

@@ -1,0 +1,43 @@
+// size-xs = 0    // < 576px
+size-sm = 576  // >= 576px
+size-md = 768  // >= 768px
+size-lg = 992  // >= 992px
+size-xl = 1200 // >= 1200px
+
+mediaDown(value)
+  @media (max-width: unit(value, px))
+    {block}
+
+mediaUp(value)
+  @media (min-width: unit(value, px))
+    {block}
+
+mediaBetween(lower, upper)
+  @media (min-width: unit(lower, px)) and (max-width: unit(upper, px))
+    {block}
+
+sm()
+  +mediaUp(size-sm)
+    {block}
+md()
+  +mediaUp(size-md)
+    {block}
+lg()
+  +mediaUp(size-lg)
+    {block}
+xl()
+  +mediaUp(size-xl)
+    {block}
+
+lessSM()
+  +mediaDown(size-sm - 1)
+    {block}
+lessMD()
+  +mediaDown(size-md - 1)
+    {block}
+lessLG()
+  +mediaDown(size-lg - 1)
+    {block}
+lessXL()
+  +mediaDown(size-xl - 1)
+    {block}
