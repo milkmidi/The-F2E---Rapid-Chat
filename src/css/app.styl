@@ -1,2 +1,45 @@
 html , body
   background-color colorBackground
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-black
+  background-color black
+  color white
+  border-radius: 50px
+  cursor pointer
+  height 40px
+  padding 0
+  line-height: @height
+  &:hover
+    color white
+    background-color lightness(black, 20%)
+  &--arrow
+    display flex
+    justify-content: center
+    align-items: center
+    &:after
+      content 'arrow_forward'
+      display inline-block
+      vertical-align top
+      margin-left 5px
+      @extend .material-icons
+      padding-bottom 2px
+    &:hover
+      &:after
+        margin-left: 8px
+

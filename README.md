@@ -1,16 +1,9 @@
-# 我是專案名稱
+# The F2E - 前端修練精神時光屋
 
-- http://bizdev.medialand.com.tw/milkmidi
-- 主機：220.128.166.83
-- remote：/bizdev.medialand.com.tw/milkmidi
+- adobe XD: https://xd.adobe.com/spec/61c8cf88-b33b-44f9-7153-d4a589f16cac-17f9/
 
 ![snapshot png](snapshot.png)
 
-## Team Member
-- AM：
-- 創意：
-- 前端：
-- 後端：
 
 ## Gulp 4
 ``` base
