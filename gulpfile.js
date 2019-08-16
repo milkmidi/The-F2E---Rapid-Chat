@@ -68,9 +68,16 @@ gulp.task('m', () => {
   return merge(taskOtherSrc, taskImgSrc);
 });
 
+gulp.task('sprite-img', () => gulp.src('src/assets/img_src/sprite.png')
+  .pipe(imagemin([
+    imageminMozjpeg({ quality: 90 }),
+    imageminOptipng({ optimizationLevel: 3 }),
+  ]))
+  .pipe(gulp.dest('src/assets/img')));
+
 gulp.task('watch', () => {
   gulp.watch('src/assets/img_src/**/*', gulp.series('m'));
-  gulp.watch('src/assets/sprite_src/**/*', gulp.series('sprite', 'm'));
+  gulp.watch('src/assets/sprite_src/**/*', gulp.series('sprite', 'sprite-img'));
 });
 
 gulp.task('default', gulp.series('m', 'sprite', 'watch'));

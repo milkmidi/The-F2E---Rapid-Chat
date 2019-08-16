@@ -40,6 +40,7 @@ const webpackConfig = merge(base, {
       'process.env': {
         VUE_ENV: JSON.stringify('client'),
         APP_ENV: JSON.stringify(process.env.APP_ENV),
+        DEV_MODE,
       },
     }),
     new WebpackBar(),
