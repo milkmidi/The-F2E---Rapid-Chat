@@ -10,46 +10,17 @@ const spritesmith = require('gulp.spritesmith');
 const buffer = require('vinyl-buffer');
 
 // https://github.com/twolfson/gulp.spritesmith
-function createSprite(src, fileName, cssTemplate, externalClassName = 'sprite') {
+function createSprite(src, fileName, cssTemplate) {
   const spriteData = gulp.src(src)
     .pipe(spritesmith({
-      imgName: `spriteSheet/${fileName.split('.')[0]}.png`,
-      cssName: `spriteSheet/${fileName}`,
+      imgName: `${fileName}.png`,
+      cssName: `${fileName}.styl`,
       padding: 4,
       imgOpts: {
         quality: 100,
       },
       cssTemplate,
       cssHandlebarsHelpers: {
-        externalName(name) {
-          let className = name;
-          if (/^\d/.test(className)) {
-            className = `a__${name}`;
-          }
-          return `.${externalClassName}.${className}`;
-        },
-        ifIndexOfBTN(name, options) {
-          if (name.indexOf('_btn') !== -1) {
-            return options.fn(this);
-          }
-          return options.inverse(this);
-        },
-        half(value) {
-          return `${Math.floor(value / 2)}px`;
-        },
-        hoverPosition(position, height) {
-          return `${position - Math.floor(height / 2)}px`;
-        },
-        percent(value, base) {
-          return `${(value / base) * 100}%`;
-        },
-        bgPosition(spriteSize, imgSize, offset) {
-          const result = (offset / (imgSize - spriteSize)) * 100;
-          if (Number.isNaN(result)) {
-            return '0';
-          }
-          return `${result}%`;
-        },
       },
     }));
   const imgStream = spriteData.img
@@ -64,11 +35,8 @@ function createSprite(src, fileName, cssTemplate, externalClassName = 'sprite') 
 
 gulp.task('sprite', () => {
   const basicTemplate = 'src/css/handlebars/basic.hbs';
-  const basicMobile = 'src/css/handlebars/basic_m.hbs';
-
   const a = [
-    createSprite('src/assets/sprite_src/*', 'sprite.css', basicTemplate),
-    createSprite('src/assets/sprite_src_m/*', 'sprite_m.css', basicMobile),
+    createSprite('src/assets/sprite_src/*', 'sprite', basicTemplate),
   ];
   return merge(...a);
 });
@@ -100,9 +68,16 @@ gulp.task('m', () => {
   return merge(taskOtherSrc, taskImgSrc);
 });
 
+gulp.task('sprite-img', () => gulp.src('src/assets/img_src/sprite.png')
+  .pipe(imagemin([
+    imageminMozjpeg({ quality: 90 }),
+    imageminOptipng({ optimizationLevel: 3 }),
+  ]))
+  .pipe(gulp.dest('src/assets/img')));
+
 gulp.task('watch', () => {
   gulp.watch('src/assets/img_src/**/*', gulp.series('m'));
-  gulp.watch('src/asset/sprite_src/**/*', gulp.series('sprite'));
+  gulp.watch('src/assets/sprite_src/**/*', gulp.series('sprite', 'sprite-img'));
 });
 
 gulp.task('default', gulp.series('m', 'sprite', 'watch'));

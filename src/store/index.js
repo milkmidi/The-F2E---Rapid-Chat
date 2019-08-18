@@ -1,69 +1,70 @@
 // @flow
 import Vuex, { MutationTree, ActionTree } from 'vuex';
 import Vue from 'vue';
-import matchMediaPlugin from './plugins/matchMediaPlugin';
-import initPlugin from './plugins/initPlugin';
+import { type ChatType } from '@/utils/types';
+import { generateMockData, mockData } from '@/components/ChatList/mockData';
+
 
 Vue.use(Vuex);
 
 
 export type TypeState = {
+  nickName: string,
+  socialName: string,
   loading: boolean,
-  mobile: boolean,
-  mouseRange: {x:number, y:number},
-  windowInnerWidth: number,
-  windowInnerHeight: number,
+  loadingSearch: boolean,
+  chatList: ChatType[]
 }
 
 
 const defaultState:TypeState = {
-  loading: true,
-  mobile: false,
-  windowInnerWidth: window.innerWidth,
-  windowInnerHeight: window.innerHeight,
-  mouseRange: {
-    x: 0, // range [-1, 1]
-    y: 0, // range [-1, 1]
-  },
+  nickName: '',
+  socialName: '',
+  loading: false,
+  loadingSearch: false,
+  chatList: [],
 };
 
-// vue 裡用 this.$store.commit('loading' , true)
 const mutations:MutationTree<TypeState> = {
-  setLoading(state:TypeState, value:boolean) {
-    state.loading = value;
+  setNickName(state:TypeState, payload:string) {
+    state.nickName = payload;
   },
-  setMobile(state:TypeState, value:boolean) {
-    state.mobile = value;
+  setSocialName(state:TypeState, payload:string) {
+    state.socialName = payload;
   },
-  setMouseRange(state:TypeState, range:{x:number, y:number}) {
-    state.mouseRange = range;
+  setLoading(state:TypeState, payload:boolean) {
+    state.loading = payload;
   },
-  setWindowSize(state:TypeState) {
-    state.windowInnerWidth = window.innerWidth;
-    state.windowInnerHeight = window.innerHeight;
+  setLoadingSearch(state:TypeState, payload:boolean) {
+    state.loadingSearch = payload;
+  },
+  setChatList(state:TypeState, payload:ChatType[]) {
+    state.chatList = payload;
+  },
+  pushChatList(state:TypeState, payload:ChatType) {
+    state.chatList.push(payload);
+    const time: number = Math.floor(Math.random() * 2000) + 500;
+    setTimeout(() => {
+      state.chatList.push(generateMockData(false));
+    }, time);
   },
 };
 
-/*
-  vue 裡用 this.$store.dispatch('loading' , true)
-  methods(){
-    ...Vuex.mapActions(['loading']),
-  }
-*/
 const actions:ActionTree<TypeState> = {
-  testAction({ commit, dispatch, state }, text) {
+  fetchChatHistory({ commit }) {
+    commit('setLoading', true);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        commit('setLoading', false);
+        const mockdataResult:ChatType[] = mockData(10);
+        commit('setChatList', mockdataResult);
+        resolve(mockdataResult);
+      }, 1000);
+    });
   },
-
 };
 
-/**
-  computed:{
-    ...Vuex.mapGetters(['loading'])
-  },
-*/
 const getters = {
-  mouseRangeX: ({ mouseRange }) => mouseRange.x,
-  mouseRangeY: ({ mouseRange }) => mouseRange.y,
 };
 
 export default new Vuex.Store<TypeState>({
@@ -71,5 +72,4 @@ export default new Vuex.Store<TypeState>({
   getters,
   actions,
   mutations,
-  plugins: [matchMediaPlugin, initPlugin],
 });

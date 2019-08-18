@@ -1,10 +1,8 @@
 <script>
-import Navigation from '@/components/Navigation';
-import useMousePosition from '@/utils/hooks/useMousePosition';
+import Loading from '@/components/Loading';
 
 export default {
-  data: vm => ({
-    mouse: useMousePosition(vm),
+  data: () => ({
   }),
   computed: {
   },
@@ -13,22 +11,23 @@ export default {
   mounted() {
   },
   components: {
-    Navigation,
+    Loading,
   },
 };
 </script>
 
 <template lang="pug">
 #app
-  Navigation
-  p {{mouse}}
-  //- ErrorBoundary
+  Loading(:show="this.$store.state.loading")
+  Loading(:show="this.$store.state.loadingSearch" :search="true")
   transition(name="fade" mode="out-in")
-      router-view.router-view
+    router-view.router-view
 </template>
 
 <style lang="stylus">
-// @require '~css/index'
+.router-view
+  width 100%
+  height 100%
 </style>
 
 

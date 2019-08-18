@@ -44,11 +44,8 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.0.0",
     "imagemin-svgo": "^7.0.0",
-    "jest": "^24.8.0",
     "plop": "^2.3.0",
-    "puppeteer": "^1.17.0",
-    "storybook-vue-router": "^1.0.3",
-    "vue-jest": "^3.0.4"
+    "storybook-vue-router": "^1.0.3"
   },
   "dependencies": {
     "@babel/cli": "^7.4.4",

@@ -1,2 +1,79 @@
 html , body
-  background-color colorBackground
+  background embedurl('img/bg-pattern-unit.png') colorBackground
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.border-radius
+  border-radius 20px
+
+.font-bold
+  font-weight: bold
+
+.btn-white
+.btn-black
+  background-color black
+  color white
+  border-radius: 50px
+  cursor pointer
+  height 40px
+  padding 0
+  line-height: @height
+  display inline-flex
+  justify-content center
+  align-items center
+  defaultTransition()
+  &:hover
+    color white
+    background-color lightness(black, 20%)
+.btn-white
+  background-color white
+  color black
+  &:hover
+    color black
+    background-color #eeeeee
+// https://cssfx.dev/
+.effect-bubble
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: black;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out;
+  &:before
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: white;
+    transform-origin: center;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.25s ease-in-out;
+  &:hover 
+    cursor: pointer;
+    color black
+    &:before
+      $scale = 20
+      transform: translate3d(-50%, -50%, 0) scale3d($scale, $scale, $scale);
