@@ -8,7 +8,6 @@ export default {
 </script>
 
 <template lang="pug" functional>
-//- ChatMessage.chat-file(:dark="props.dark")
 .d-flex.chat-file
   i.material-icons description
   div

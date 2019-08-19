@@ -20,7 +20,6 @@ export default {
 .user-icon
   display inline-block
   padding 4px
-  // margin-right 15px
   background-color white
   .sprite
     vertical-align middle

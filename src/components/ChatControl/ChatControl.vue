@@ -1,11 +1,8 @@
 <script>
 export default {
-  props: {},
   data: () => ({
     input: '',
   }),
-  computed: {
-  },
   methods: {
     send() {
       if (this.input.trim === '') {

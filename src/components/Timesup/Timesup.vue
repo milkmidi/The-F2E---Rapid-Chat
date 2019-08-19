@@ -9,16 +9,6 @@ export default {
       default: 'nickname',
     },
   },
-  data: () => ({
-  }),
-  computed: {
-  },
-  methods: {
-  },
-  mounted() {
-  },
-  beforeDestroy() {
-  },
   components: {
     RapidCard,
     UserIcon,
@@ -44,10 +34,4 @@ RapidCard.timesup
       .btn.btn-black.w-100(@click="$emit('confirm', true)")
         i.material-icons.mr-2 favorite
         |EXCHANGE
-
 </template>
-
-<style lang="stylus">
-.timesup
-  // display: none
-</style>

@@ -2,14 +2,6 @@
 import Loading from '@/components/Loading';
 
 export default {
-  data: () => ({
-  }),
-  computed: {
-  },
-  methods: {
-  },
-  mounted() {
-  },
   components: {
     Loading,
   },

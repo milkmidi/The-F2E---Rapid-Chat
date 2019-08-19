@@ -12,7 +12,7 @@ const stories = storiesOf('UserIcon', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
   .add('basic', () => ({
-    props:{
+    props: {
     },
     data: () => ({
     }),
