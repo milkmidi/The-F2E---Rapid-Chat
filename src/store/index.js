@@ -13,7 +13,10 @@ export type TypeState = {
   socialName: string,
   loading: boolean,
   loadingSearch: boolean,
-  chatList: ChatType[]
+  chatList: ChatType[],
+  //
+  socketConnected:boolean,
+
 }
 
 
@@ -23,6 +26,8 @@ const defaultState:TypeState = {
   loading: false,
   loadingSearch: false,
   chatList: [],
+  //
+  socketConnected: false,
 };
 
 const mutations:MutationTree<TypeState> = {
@@ -47,6 +52,25 @@ const mutations:MutationTree<TypeState> = {
     setTimeout(() => {
       state.chatList.push(generateMockData(false));
     }, time);
+  },
+  //
+  socket_connect(state:TypeState) {
+    state.socketConnected = true;
+  },
+  socket_action(state:TypeState, payload) {
+    const { type, data } = payload;
+    console.log(type, data);
+    /* switch (type) {
+      case 'connect':
+      case 'switchPage':
+      case 'vote':
+        Object.keys(payload).forEach((key) => {
+          state[key] = payload[key];
+        });
+        break;
+      default:
+        break; */
+    // }
   },
 };
 
