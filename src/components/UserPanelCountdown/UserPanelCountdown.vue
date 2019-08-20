@@ -1,6 +1,7 @@
 <script>
 import UserPanel from '../UserPanel';
 import Countdown from '../Countdown';
+import UserIcon from '@/components/UserIcon';
 
 export default {
   props: {
@@ -8,10 +9,15 @@ export default {
       type: String,
       default: 'NickName',
     },
+    scale: {
+      type: Number,
+      default: 1,
+    },
   },
   components: {
     UserPanel,
     Countdown,
+    UserIcon,
   },
 };
 </script>
@@ -24,7 +30,7 @@ export default {
       .h5
         strong {{nickName}}
       .d-flex.align-items-center
-        Countdown(@timeup="$emit('timeup')")
+        Countdown(@timeup="$emit('timeup')" :scale="scale")
 </template>
 
 <style lang="stylus">

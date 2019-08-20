@@ -18,7 +18,7 @@ export default {
     },
   },
   data: () => ({
-    thumbIndex: Math.floor(Math.random() * 6) + 1,
+    thumbIndex: Math.floor(Math.random() * 6),
     moreMode: false,
   }),
   methods: {
