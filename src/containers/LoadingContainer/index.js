@@ -9,13 +9,4 @@ export default {
       />
     );
   },
-  /* render(h) {
-    return (
-      h(Loading, {
-        props: {
-          show: this.$store.state.loading,
-        },
-      })
-    );
-  }, */
 };

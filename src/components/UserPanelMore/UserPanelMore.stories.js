@@ -3,19 +3,14 @@ import Vue from 'vue';
 import { storiesOf } from '@storybook/vue';
 import Centered from '@storybook/addon-centered/vue';
 import { withKnobs } from '@storybook/addon-knobs';
-import README from './README.md';
-import ChatImage from '.';
 
-Vue.component('ChatImage', ChatImage);
+import UserPanelMore from '.';
 
-const stories = storiesOf('ChatImage', module);
+Vue.component('UserPanelMore', UserPanelMore);
+
+const stories = storiesOf('UserPanelMore', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
-  .addParameters({
-    readme: {
-      sidebar: README,
-    },
-  })
   .add('basic', () => ({
     props: {
     },
@@ -24,6 +19,6 @@ stories.addDecorator(Centered)
     methods: {
     },
     template: pug`
-      div(style="width:400px;")
-        ChatImage(src="https://fakeimg.pl/250x100/ff0000")`,
+      div(style="background:black; padding: 15px;")
+        UserPanelMore(:show="true")`,
   }));

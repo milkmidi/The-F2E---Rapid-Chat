@@ -8,6 +8,7 @@ import ChatList from '@/components/ChatList';
 import Emoticon from '@/components/Emoticon';
 import Timesup from '@/components/Timesup';
 import MatchCard from '@/components/MatchCard';
+import UserPanelCountdown from '@/components/UserPanelCountdown';
 
 import {
   CHAT_MESSAGE,
@@ -98,22 +99,24 @@ export default {
     Emoticon,
     MatchCard,
     Timesup,
+    UserPanelCountdown,
   },
 };
 </script>
 
 <template lang="pug">
 .chatting.container.p-4
-  .pop.fill-100.flex-center(v-if="showTimesup")
-    Timesup(@confirm="timesupConfirm")
-  .pop.fill-100.flex-center(v-if="showMatch")
-    MatchCard(@next="next")
+  transition(name="fade")
+    .pop.fill-100.flex-center(v-if="showTimesup")
+      Timesup(@confirm="timesupConfirm")
+  transition(name="fade")
+    .pop.fill-100.flex-center(v-if="showMatch")
+      MatchCard(@next="next")
   .row.h-100
     .col-4
       .left.d-flex.flex-column.h-100
         .mb-4
-          UserPanel(primary="1")
-            Countdown(@timeup="timeup" :scale="timeScale")
+          UserPanelCountdown(@timeup="timeup" :scale="timeScale")
         .flex-grow-1
           UserPanelContainer
         .sprite.logo-rapid-chat

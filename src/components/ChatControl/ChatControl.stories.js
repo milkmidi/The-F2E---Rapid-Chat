@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/vue';
 import Centered from '@storybook/addon-centered/vue';
 import { withKnobs } from '@storybook/addon-knobs';
 
+import README from './README.md';
+
 import ChatControl from '.';
 
 Vue.component('ChatControl', ChatControl);
@@ -11,6 +13,11 @@ Vue.component('ChatControl', ChatControl);
 const stories = storiesOf('ChatControl', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
+  .addParameters({
+    readme: {
+      sidebar: README,
+    },
+  })
   .add('basic', () => ({
     props: {
     },

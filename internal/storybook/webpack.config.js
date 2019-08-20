@@ -20,6 +20,10 @@ module.exports = ({ config, mode }) => {
       enforce: 'pre',
     },
   ];
+  config.module.rules.push({
+    resourceQuery: /blockType=docs/,
+    use: ['storybook-readme/vue/docs-loader', 'html-loader', 'markdown-loader'],
+  });
 
   return config;
 };

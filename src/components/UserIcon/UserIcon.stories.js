@@ -12,13 +12,17 @@ const stories = storiesOf('UserIcon', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
   .add('basic', () => ({
-    props:{
-    },
-    data: () => ({
-    }),
-    methods: {
-    },
     template: pug`
       div
         UserIcon`,
+  }))
+  .add('clickable', () => ({
+    template: pug`
+      div
+        UserIcon(:clickable="true")`,
+  }))
+  .add('active', () => ({
+    template: pug`
+      div
+        UserIcon(:active="true")`,
   }));

@@ -7,4 +7,3 @@ src/html/*
 flow-typed/*
 **/vendor/*.js
 !.eslintrc.js
-internal/script/SSR/createjs.module.js

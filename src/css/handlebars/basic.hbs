@@ -1,13 +1,22 @@
-{{#each sprites}}
-{{#if @first}}
-.sprite {
-  display: inline-block;
-  background-image: embedurl('img/{{{escaped_image}}}');
-  background-repeat: no-repeat; }
-{{/if}}
+.sprite
+  display inline-block
+  background-image embedurl('img/{{{spritesheet.escaped_image}}}')
+  background-repeat no-repeat
+  &.autosize
+    width 100%
+    height auto
+    &:before
+      content ''
+      display block
 
-.{{name}} {
-  background-position: {{px.offset_x}} {{px.offset_y}};
-  width: {{px.width}};
-  height: {{px.height}}; }
+{{#each sprites}}
+.{{name}}
+  background-position {{px.offset_x}} {{px.offset_y}}
+  width {{px.width}}
+  height {{px.height}}
+  &.autosize
+    background-position {{bgPosition total_width width offset_x}} {{bgPosition total_height height offset_y}}
+    background-size {{percent total_width width}} auto
+    &:before
+      padding-top {{percent height width}}
 {{/each}}

@@ -21,6 +21,16 @@ function createSprite(src, fileName, cssTemplate) {
       },
       cssTemplate,
       cssHandlebarsHelpers: {
+        percent(value, base) {
+          return `${(value / base) * 100}%`;
+        },
+        bgPosition(spriteSize, imgSize, offset) {
+          const result = (offset / (imgSize - spriteSize)) * 100;
+          if (Number.isNaN(result)) {
+            return '0';
+          }
+          return `${result}%`;
+        },
       },
     }));
   const imgStream = spriteData.img

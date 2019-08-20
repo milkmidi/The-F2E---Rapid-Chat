@@ -1,20 +1,25 @@
-import { addParameters, configure } from '@storybook/vue';
+import { addParameters, configure, addDecorator } from '@storybook/vue';
 // import { themes } from '@storybook/theming';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { action } from '@storybook/addon-actions';
-import vueGlobalPlugins from '../../src/utils/vue-global-plugins';
-import './FakeComponent';
+import registerWithPanelTitle from 'storybook-readme/registerWithPanelTitle';
+
+
 /* eslint-disable */
 import '../../src/css/index.styl';
-import './storybook.styl';
-/* eslint-enable */
 
-vueGlobalPlugins.install(Vue);
+// for Vue storybook
+import { addReadme } from 'storybook-readme/vue';
+/* eslint-enable */
 
 // Register custom components.
 Vue.use(Vuex);
 
+registerWithPanelTitle('Docs'); // <---- vue subpackage
+
+
+addDecorator(addReadme);
 
 const logMixin = {
   methods: {

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
 import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
 import Centered from '@storybook/addon-centered/vue';
 import { withKnobs } from '@storybook/addon-knobs';
 
@@ -14,12 +13,21 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
   .add('basic', () => ({
     props: {
-
     },
     data: () => ({
+      nickName: 'milkmidi',
     }),
     methods: {
+      submit({ nickName }) {
+        this.nickName = nickName;
+      },
     },
-    template: pug`div
-            UserPanel`,
+    template: pug`
+      div
+        UserPanel(
+          :nickName="nickName"
+          socialName="facebook"
+          contactName="contactName"
+          @submit="submit"
+          )`,
   }));

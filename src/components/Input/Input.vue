@@ -7,15 +7,17 @@ export default {
   props: {
     placeholder: String,
     value: String,
+    theme: {
+      type: String,
+      default: 'dark',
+    },
   },
-  data: () => ({
-  }),
   computed: {
     innerModel: {
-      get():String {
+      get():string {
         return this.value;
       },
-      set(val:String) {
+      set(val:string) {
         this.$emit('innerInput', val);
       },
     },
@@ -25,6 +27,8 @@ export default {
     elClass():Object {
       return {
         'has-input': this.hasInput,
+        'is-dark': this.theme === 'dark',
+        'is-light': this.theme === 'light',
       };
     },
   },
@@ -47,7 +51,6 @@ $left = 2px
 $focusColor = #00b3e6
 .input
   position relative
-  // display inline-block
   padding 10px 0
   overflow hidden
   .ic-wrap
@@ -65,7 +68,7 @@ $focusColor = #00b3e6
     &.on
       visibility visible
       transform scale(1) rotate(0)
-    .ic 
+    .ic
       fill black
       stroke black
       stroke-width 2
@@ -86,9 +89,10 @@ $focusColor = #00b3e6
       outline none
       border-bottom 1px solid $focusColor
       + .placeholder
-        top 5px
+        top 9px
         color $focusColor
   .placeholder
+    font-size 14px
     defaultTransition()
     color #444
     position absolute
@@ -98,5 +102,14 @@ $focusColor = #00b3e6
     transform translateY(-50%)
   &.has-input
     .placeholder
-      top 5px
+      top 9px
+  &.is-light
+    color white
+    .placeholder
+    input
+      border-color white
+      color white
+    .ic
+      stroke white
+      fill white
 </style>

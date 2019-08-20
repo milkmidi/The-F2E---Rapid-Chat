@@ -11,6 +11,7 @@ transition(name="fade")
 .loading
   position fixed
   background-color alpha(white,0.7)
+  z-index 9999
 
   // https://codepen.io/ZachSaucier/pen/rsvgK
   @keyframes rotate
