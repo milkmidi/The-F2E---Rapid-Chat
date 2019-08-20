@@ -14,7 +14,6 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
   .add('basic', () => ({
     props: {
-
     },
     data: () => ({
       input: '',
@@ -24,4 +23,16 @@ stories.addDecorator(Centered)
     template: pug`
       div
         Input(v-model="input" placeholder="Nickname")`,
+  }))
+  .add('color', () => ({
+    props: {
+    },
+    data: () => ({
+      input: '',
+    }),
+    methods: {
+    },
+    template: pug`
+      div(style="background:black;padding:10px;")
+        Input(v-model="input" placeholder="Nickname" theme="light")`,
   }));

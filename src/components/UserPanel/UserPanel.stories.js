@@ -20,5 +20,16 @@ stories.addDecorator(Centered)
     },
     template: pug`
       div
-        UserPanel`,
+        UserPanel(nickName="milkmidi" socialName="facebook")`,
+  }))
+  .add('primary', () => ({
+    props: {
+    },
+    data: () => ({
+    }),
+    methods: {
+    },
+    template: pug`
+      div
+        UserPanel(nickName="milkmidi" socialName="facebook" primary="1")`,
   }));

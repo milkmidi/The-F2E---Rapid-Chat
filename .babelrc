@@ -16,8 +16,8 @@
         }
       }
     ],
-    "vue",
-    "@babel/preset-flow"
+    "@babel/preset-flow",
+    "@vue/babel-preset-jsx"
   ],
   "plugins": [
     "add-module-exports",
@@ -36,6 +36,7 @@
       "regenerator": true,
       "useESModules": false
     }]
+    
   ],
   "env": {
     "production": {
