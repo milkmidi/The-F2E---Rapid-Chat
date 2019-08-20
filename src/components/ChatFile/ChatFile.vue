@@ -10,7 +10,7 @@ export default {
 <template lang="pug" functional>
 .d-flex.chat-file
   i.material-icons description
-  div
+  .pl-2
     .font-bold {{props.fileName}}
     span {{props.fileSize}}
 </template>

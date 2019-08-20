@@ -12,14 +12,12 @@ export default {
       default: 'dark',
     },
   },
-  data: () => ({
-  }),
   computed: {
     innerModel: {
-      get():String {
+      get():string {
         return this.value;
       },
-      set(val:String) {
+      set(val:string) {
         this.$emit('innerInput', val);
       },
     },

@@ -1,12 +1,15 @@
 <script>
 import Input from '@/components/Input';
+import UserIcon from '@/components/UserIcon';
 
 export default {
   props: {
     show: Boolean,
+    thumbIndex: Number,
+    nickName: String,
   },
-  data: () => ({
-    nickName: '',
+  data: vm => ({
+    innerNickName: vm.nickName,
   }),
   computed: {
     moreContentStyle() {
@@ -17,17 +20,26 @@ export default {
           : '0',
       };
     },
+    innerIndex: {
+      get():number {
+        return this.thumbIndex;
+      },
+      set(val:number) {
+        this.$emit('update:thumbIndex', val);
+      },
+    },
   },
   methods: {
     saveClickHandler() {
       this.$emit('submit', {
-        nickName: this.nickName,
+        nickName: this.innerNickName,
       });
       this.$emit('update:show', false);
     },
   },
   components: {
     Input,
+    UserIcon,
   },
 };
 </script>
@@ -39,18 +51,18 @@ transition(name="fade")
       .col PORTRAIT
     .row.no-gutters
       .col-2
-        .sprite.thumbnail-1.autosize
+        .sprite.thumbnail-1.autosize(:class="{active:innerIndex===0}" @click="innerIndex=0")
       .col-2
-        .sprite.thumbnail-2.autosize
+        .sprite.thumbnail-2.autosize(:class="{active:innerIndex===1}" @click="innerIndex=1")
       .col-2
-        .sprite.thumbnail-3.autosize
+        .sprite.thumbnail-3.autosize(:class="{active:innerIndex===2}" @click="innerIndex=2")
       .col-2
-        .sprite.thumbnail-4.autosize
+        .sprite.thumbnail-4.autosize(:class="{active:innerIndex===3}" @click="innerIndex=3")
       .col-2
-        .sprite.thumbnail-5.autosize
+        .sprite.thumbnail-5.autosize(:class="{active:innerIndex===4}" @click="innerIndex=4")
       .col-2
-        .sprite.thumbnail-6.autosize
-    Input(theme="light" placeholder="NICKNAME" v-model="nickName")
+        .sprite.thumbnail-6.autosize(:class="{active:innerIndex===5}" @click="innerIndex=5")
+    Input(theme="light" placeholder="NICKNAME" v-model="innerNickName")
     .btn(@click="saveClickHandler") SAVE
 </template>
 
@@ -61,6 +73,9 @@ transition(name="fade")
   color white
   .sprite
     cursor pointer
+    opacity 0.5
+    &.active
+      opacity 1
   .btn
     background-color white
     color black

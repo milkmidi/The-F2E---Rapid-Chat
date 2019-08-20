@@ -15,21 +15,19 @@ stories.addDecorator(Centered)
     props: {
     },
     data: () => ({
+      nickName: 'milkmidi',
     }),
     methods: {
+      submit({ nickName }) {
+        this.nickName = nickName;
+      },
     },
     template: pug`
       div
-        UserPanel(nickName="milkmidi" socialName="facebook")`,
-  }))
-  .add('primary', () => ({
-    props: {
-    },
-    data: () => ({
-    }),
-    methods: {
-    },
-    template: pug`
-      div
-        UserPanel(nickName="milkmidi" socialName="facebook" primary="1")`,
+        UserPanel(
+          :nickName="nickName"
+          socialName="facebook"
+          contactName="contactName"
+          @submit="submit"
+          )`,
   }));

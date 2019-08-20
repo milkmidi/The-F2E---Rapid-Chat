@@ -12,13 +12,13 @@ const stories = storiesOf('UserPanelMore', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(Centered)
   .add('basic', () => ({
-    props:{
+    props: {
     },
     data: () => ({
     }),
     methods: {
     },
     template: pug`
-      div
-        UserPanelMore`,
+      div(style="background:black; padding: 15px;")
+        UserPanelMore(:show="true")`,
   }));
