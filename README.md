@@ -2,6 +2,7 @@
 - online demo: https://milkmidi.github.io/The-F2E---Rapid-Chat/
 - adobe XD: https://xd.adobe.com/spec/61c8cf88-b33b-44f9-7153-d4a589f16cac-17f9/
 - material icons https://material.io/tools/icons/?style=baseline
+
 ![snapshot png](snapshot.png)
 
 
@@ -24,8 +25,6 @@ gulp
 # build for production with minification
 npm run build
 
-# gulp imagemin
-gulp m
 ```
 
 ## Other Command line
@@ -35,8 +34,5 @@ npm run plop
 
 # stroybook
 npm run storybook
-
-# jest
-npm run test
 
 ```
