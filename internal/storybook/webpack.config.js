@@ -10,7 +10,7 @@ module.exports = ({ config, mode }) => {
     ...rootWebpackConfig.resolve.modules,
   ];
   const { rules } = config.module;
-  remove(rules, rule => rule.test.test('.vue'));
+  remove(rules, (rule) => rule.test.test('.vue'));
   config.module.rules = [
     ...rules,
     ...rootWebpackConfig.module.rules,
