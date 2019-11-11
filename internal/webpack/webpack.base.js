@@ -143,7 +143,7 @@ module.exports = {
               define: {
                 DEV_MODE,
               },
-              import: [path.resolve('src/css/modules/common.styl')],
+              import: [path.resolve('src/css/mixins/_index.styl')],
             },
           },
         ],
