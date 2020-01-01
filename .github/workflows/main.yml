@@ -7,31 +7,39 @@ on:
 
 jobs:
   build:
-    name: Build Web
+    name: Build and deploy gh-pages
     env:
-      my_secret: ${{secrets.commit_secret}}
-      PUBLISH_BRANCH: gh-pages
-      PUBLISH_DIR: ./dist 
+      MY_SECRET   : ${{secrets.commit_secret}}
+      USER_NAME   : githubaction
+      USER_EMAIL  : githubaction@fake.com
+      PUBLISH_DIR : ./dist
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm install
       run: |
         npm install
+    - name: npm run build
+      run: |
+        npm run gulp m
         npm run build
-        git config --global user.email milkmidi@gmail.com
-        git config --global user.name milkmidi
-        cd dist
-        git rm -rf .git
+    - name: Commit files
+      run: |
+        cd $PUBLISH_DIR
         git init
-        git add .
-        git commit -a -m "deploy to Github pages"
-        git push --force ${{secrets.commit_secret}}@github.com:milkmidi/The-F2E---Rapid-Chat.git master:gh-pages
-        echo complete.
+        git config --local user.email $USER_NAME
+        git config --local user.name $USER_EMAIL
+        git status
+        git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
+        git checkout -b gh-pages
+        git add --all
+        git commit -m "deploy to Github pages"
+        git push origin gh-pages -f
+        echo 🤘 deploy gh-pages complete.
