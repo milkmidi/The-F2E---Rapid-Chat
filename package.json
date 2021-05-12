@@ -95,7 +95,7 @@
     "merge-stream": "^2.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss": "^7.0.16",
+    "postcss": "^8.2.10",
     "postcss-loader": "^3.0.0",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",
